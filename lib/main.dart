@@ -110,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 100,
                   height: 100,
                   child: OutlineButton(
+                    color: Colors.greenAccent,
                     highlightedBorderColor: Colors.greenAccent,
                     onPressed: () {},
                     child: Text("Outline Button"),
