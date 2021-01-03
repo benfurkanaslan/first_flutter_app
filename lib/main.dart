@@ -15,15 +15,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
+  MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -42,94 +40,89 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var screenInfo = MediaQuery.of(context);
     final screenWidth = screenInfo.size.width;
-    print(screenWidth);
     final screenHeight = screenInfo.size.height;
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Colors.black45,
+        elevation: 5,
+        title: Text(
+          "Merhaba Dünya",
+          style: TextStyle(
+              fontSize: screenWidth * 0.06,
+              letterSpacing: 1.5,
+              color: Colors.black),
+        ),
+        centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Column(
-            children: [
-              Container(
-                child: MaterialButton(
-                  onPressed: () {
-                    print("resme basıldı");
-                  },
-                  child: Image.network(
-                    "https://mediatrend.mediamarkt.com.tr/wp-content/uploads/2017/02/2017_subat_03.jpg",
-                    width: screenWidth,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Spacer(flex: 25),
+            SizedBox(
+              width: screenWidth * 0.7,
+              child: TextField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.account_circle),
+                  labelText: "Kullanıcı Adı",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(3),
+                    borderSide: BorderSide(),
                   ),
                 ),
               ),
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: RaisedButton(
-                    onPressed: () {},
-                    child: Text("button"),
-                  ),
-                  width: 100,
-                  height: 100,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Text("Material Button"),
-                  ),
-                  width: 100,
-                  height: 100,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: FlatButton(
-                    onPressed: () {},
-                    child: Text("press"),
-                  ),
-                  width: 100,
-                  height: 100,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  child: OutlineButton(
-                    color: Colors.greenAccent,
-                    highlightedBorderColor: Colors.greenAccent,
-                    onPressed: () {},
-                    child: Text("Outline Button"),
+            ),
+            Spacer(flex: 10),
+            SizedBox(
+              width: screenWidth * 0.7,
+              child: TextField(
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  disabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.blue)),
+                  icon: Icon(Icons.security),
+                  labelText: "Şifre",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(3),
+                    borderSide: BorderSide(),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Elevated Button"),
+            ),
+            Spacer(flex: 10),
+            ButtonBar(
+              children: [
+                MaterialButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Şifremi Unuttum",
+                    style: TextStyle(color: Colors.blue[900]),
                   ),
                 ),
-              ),
-            ],
-          ),
+                MaterialButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Giriş Yap",
+                    style: TextStyle(color: Colors.blue[900]),
+                  ),
+                ),
+              ],
+            ),
+            Spacer(
+              flex: 55,
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black45,
+        items: [
+          BottomNavigationBarItem(
+              label: "New Member", icon: Icon(Icons.account_circle)),
+          BottomNavigationBarItem(label: "Anonymous", icon: Icon(Icons.adjust)),
         ],
       ),
     );
