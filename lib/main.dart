@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.black45,
         elevation: 5,
         title: Text(
-          "Merhaba Dünya",
+          "Hello World",
           style: TextStyle(
               fontSize: screenWidth * 0.06,
               letterSpacing: 1.5,
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.account_circle),
-                  labelText: "Kullanıcı Adı",
+                  labelText: "User Name",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(3),
                     borderSide: BorderSide(),
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   disabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(color: Colors.blue)),
                   icon: Icon(Icons.security),
-                  labelText: "Şifre",
+                  labelText: "Password",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(3),
                     borderSide: BorderSide(),
@@ -98,14 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialButton(
                   onPressed: () {},
                   child: Text(
-                    "Şifremi Unuttum",
+                    "Forgot My Password",
                     style: TextStyle(color: Colors.blue[900]),
                   ),
                 ),
                 MaterialButton(
                   onPressed: () {},
                   child: Text(
-                    "Giriş Yap",
+                    "Sign In",
                     style: TextStyle(color: Colors.blue[900]),
                   ),
                 ),
@@ -116,14 +116,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black45,
-        items: [
-          BottomNavigationBarItem(
-              label: "New Member", icon: Icon(Icons.account_circle)),
-          BottomNavigationBarItem(label: "Anonymous", icon: Icon(Icons.adjust)),
-        ],
       ),
     );
   }
