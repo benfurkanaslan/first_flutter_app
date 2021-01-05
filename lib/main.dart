@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/SignIn/SignedIn.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        backgroundColor: Colors.black45,
+        backgroundColor: Colors.grey,
         elevation: 5,
         title: Text(
           "Hello World",
@@ -103,7 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignedIn()));
+                  },
                   child: Text(
                     "Sign In",
                     style: TextStyle(color: Colors.blue[900]),
