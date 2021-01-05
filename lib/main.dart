@@ -105,8 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignedIn()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            SignedIn(screenWidth, screenHeight),
+                      ),
+                    );
                   },
                   child: Text(
                     "Sign In",

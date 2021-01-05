@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SignedIn extends StatefulWidget {
+  num screenWidth;
+  num screenHeight;
+
+  SignedIn(this.screenWidth, this.screenHeight);
+
   @override
   _SignedInState createState() => _SignedInState();
 }
@@ -8,9 +13,6 @@ class SignedIn extends StatefulWidget {
 class _SignedInState extends State<SignedIn> {
   @override
   Widget build(BuildContext context) {
-    var screenInfo = MediaQuery.of(context);
-    final screenWidth = screenInfo.size.width;
-    final screenHeight = screenInfo.size.height;
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
@@ -20,7 +22,7 @@ class _SignedInState extends State<SignedIn> {
           style: TextStyle(
             color: Colors.black,
             letterSpacing: 1.5,
-            fontSize: screenWidth * 0.06,
+            fontSize: widget.screenWidth * 0.06,
           ),
         ),
         centerTitle: true,
