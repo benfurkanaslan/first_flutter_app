@@ -46,19 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.grey,
-        elevation: 5,
+        elevation: screenWidth * 0.01,
         title: Text(
           "Hello World",
           style: TextStyle(
               fontSize: screenWidth * 0.06,
-              letterSpacing: 1.5,
+              letterSpacing: screenWidth * 0.003,
+              wordSpacing: screenWidth * 0.01,
               color: Colors.black),
         ),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(flex: 25),
             SizedBox(
@@ -68,8 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Icon(Icons.account_circle),
                   labelText: "User Name",
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(3),
-                    borderSide: BorderSide(),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.01),
                   ),
                 ),
               ),
@@ -87,8 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Icon(Icons.security),
                   labelText: "Password",
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(3),
-                    borderSide: BorderSide(),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.01),
                   ),
                 ),
               ),

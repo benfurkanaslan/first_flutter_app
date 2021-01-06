@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SignedIn extends StatefulWidget {
   num screenWidth;
   num screenHeight;
@@ -16,12 +17,23 @@ class _SignedInState extends State<SignedIn> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
+        elevation: widget.screenWidth * 0.01,
         backgroundColor: Colors.grey,
         title: Text(
           "Hello World",
           style: TextStyle(
             color: Colors.black,
-            letterSpacing: 1.5,
+            letterSpacing: widget.screenWidth * 0.003,
+            wordSpacing: widget.screenWidth * 0.01,
             fontSize: widget.screenWidth * 0.06,
           ),
         ),
