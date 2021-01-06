@@ -37,6 +37,11 @@ class _MyHomePageState extends State<MyHomePage> {
     ]);
   }
 
+  var userNameController = TextEditingController();
+  var passwordController = TextEditingController();
+  String userName;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     var screenInfo = MediaQuery.of(context);
@@ -64,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               width: screenWidth * 0.7,
               child: TextField(
+                controller: userNameController,
                 decoration: InputDecoration(
                   icon: Icon(Icons.account_circle),
                   labelText: "User Name",
@@ -77,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               width: screenWidth * 0.7,
               child: TextField(
+                controller: passwordController,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
@@ -106,10 +113,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            SignedIn(screenWidth, screenHeight),
+                        builder: (context) => SignedIn(
+                            screenWidth, screenHeight, userName, password),
                       ),
                     );
+                    userName = userNameController.text;
+                    password = passwordController.text;
                   },
                   child: Text(
                     "Sign In",

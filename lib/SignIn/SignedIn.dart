@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class SignedIn extends StatefulWidget {
   num screenWidth;
   num screenHeight;
+  String userName;
+  String password;
 
-  SignedIn(this.screenWidth, this.screenHeight);
+  SignedIn(this.screenWidth, this.screenHeight, this.userName, this.password);
 
   @override
   _SignedInState createState() => _SignedInState();
@@ -42,7 +44,11 @@ class _SignedInState extends State<SignedIn> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("Signed In")],
+          children: [
+            Text("Signed In"),
+            Text("User Name  : ${widget.userName}"),
+            Text("Password : ${widget.password}"),
+          ],
         ),
       ),
     );
