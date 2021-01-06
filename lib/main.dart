@@ -88,8 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 enableSuggestions: false,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  disabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.blue)),
                   icon: Icon(Icons.security),
                   labelText: "Password",
                   border: OutlineInputBorder(
