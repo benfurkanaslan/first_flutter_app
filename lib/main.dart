@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String userName;
   String password;
 
+  final String wallPaper = "https://wallpaperaccess.com/full/1188166.png";
+
   @override
   Widget build(BuildContext context) {
     var screenInfo = MediaQuery.of(context);
@@ -63,72 +65,81 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          children: [
-            Spacer(flex: 25),
-            SizedBox(
-              width: screenWidth * 0.7,
-              child: TextField(
-                controller: userNameController,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.account_circle),
-                  labelText: "User Name",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.01),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(808080),
+            image: DecorationImage(
+              image: NetworkImage(wallPaper),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            children: [
+              Spacer(flex: 25),
+              SizedBox(
+                width: screenWidth * 0.7,
+                child: TextField(
+                  controller: userNameController,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.account_circle),
+                    labelText: "User Name",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.01),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Spacer(flex: 10),
-            SizedBox(
-              width: screenWidth * 0.7,
-              child: TextField(
-                controller: passwordController,
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.security),
-                  labelText: "Password",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.01),
+              Spacer(flex: 10),
+              SizedBox(
+                width: screenWidth * 0.7,
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.security),
+                    labelText: "Password",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.01),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Spacer(flex: 10),
-            ButtonBar(
-              children: [
-                MaterialButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Forgot My Password",
-                    style: TextStyle(color: Colors.blue[900]),
+              Spacer(flex: 10),
+              ButtonBar(
+                children: [
+                  MaterialButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Forgot My Password",
+                      style: TextStyle(color: Colors.blue[900]),
+                    ),
                   ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignedIn(
-                            screenWidth, screenHeight, userName, password),
-                      ),
-                    );
-                    userName = userNameController.text;
-                    password = passwordController.text;
-                  },
-                  child: Text(
-                    "Sign In",
-                    style: TextStyle(color: Colors.blue[900]),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignedIn(
+                              screenWidth, screenHeight, userName, password),
+                        ),
+                      );
+                      userName = userNameController.text;
+                      password = passwordController.text;
+                    },
+                    child: Text(
+                      "Sign In",
+                      style: TextStyle(color: Colors.blue[900]),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Spacer(
-              flex: 55,
-            ),
-          ],
+                ],
+              ),
+              Spacer(
+                flex: 55,
+              ),
+            ],
+          ),
         ),
       ),
     );
