@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/ForgotPassword/ForgotMyPassword.dart';
 import 'package:flutter_app/SignIn/SignedIn.dart';
 
 void main() {
@@ -42,8 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String userName;
   String password;
 
-  final String wallPaper = "https://wallpaperaccess.com/full/1188166.png";
-
   @override
   Widget build(BuildContext context) {
     var screenInfo = MediaQuery.of(context);
@@ -55,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.grey,
         elevation: screenWidth * 0.01,
         title: Text(
-          "Hello World",
+          "Tap&Talk",
           style: TextStyle(
               fontSize: screenWidth * 0.06,
               letterSpacing: screenWidth * 0.003,
@@ -67,15 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-            color: const Color(808080),
-            image: DecorationImage(
-              image: NetworkImage(wallPaper),
-              fit: BoxFit.cover,
-            ),
+            color: Colors.grey,
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Spacer(flex: 25),
               SizedBox(
                 width: screenWidth * 0.7,
                 child: TextField(
@@ -84,12 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.account_circle),
                     labelText: "User Name",
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(screenWidth * 0.01),
+                      borderRadius: BorderRadius.circular(0),
                     ),
                   ),
                 ),
               ),
-              Spacer(flex: 10),
+              SizedBox(
+                height: screenHeight * 0.05,
+              ),
               SizedBox(
                 width: screenWidth * 0.7,
                 child: TextField(
@@ -101,22 +98,33 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.security),
                     labelText: "Password",
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(screenWidth * 0.01),
+                      borderRadius: BorderRadius.circular(0),
                     ),
                   ),
                 ),
               ),
-              Spacer(flex: 10),
+              SizedBox(
+                height: screenHeight * 0.1,
+              ),
               ButtonBar(
                 children: [
                   MaterialButton(
-                    onPressed: () {},
+                    color: Colors.blue[300],
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ForgotMyPassword(),
+                        ),
+                      );
+                    },
                     child: Text(
                       "Forgot My Password",
                       style: TextStyle(color: Colors.blue[900]),
                     ),
                   ),
                   MaterialButton(
+                    color: Colors.blue[300],
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -134,9 +142,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ],
-              ),
-              Spacer(
-                flex: 55,
               ),
             ],
           ),

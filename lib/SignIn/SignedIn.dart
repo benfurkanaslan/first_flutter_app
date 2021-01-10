@@ -31,7 +31,7 @@ class _SignedInState extends State<SignedIn> {
         elevation: widget.screenWidth * 0.01,
         backgroundColor: Colors.grey,
         title: Text(
-          "Hello World",
+          "Tap&Talk",
           style: TextStyle(
             color: Colors.black,
             letterSpacing: widget.screenWidth * 0.003,
