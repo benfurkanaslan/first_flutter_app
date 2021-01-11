@@ -6,8 +6,14 @@ class SignedIn extends StatefulWidget {
   num screenHeight;
   String userName;
   String password;
+  var color;
 
-  SignedIn(this.screenWidth, this.screenHeight, this.userName, this.password);
+  SignedIn(
+      {this.screenWidth,
+      this.screenHeight,
+      this.userName,
+      this.password,
+      this.color});
 
   @override
   _SignedInState createState() => _SignedInState();
@@ -17,7 +23,7 @@ class _SignedInState extends State<SignedIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: widget.color,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -29,7 +35,7 @@ class _SignedInState extends State<SignedIn> {
           ),
         ),
         elevation: widget.screenWidth * 0.01,
-        backgroundColor: Colors.grey,
+        backgroundColor: widget.color,
         title: Text(
           "Tap&Talk",
           style: TextStyle(

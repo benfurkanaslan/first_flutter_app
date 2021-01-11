@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var passwordController = TextEditingController();
   String userName;
   String password;
+  bool rememberPassword = false;
+  var color = Colors.blueGrey;
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final screenWidth = screenInfo.size.width;
     final screenHeight = screenInfo.size.height;
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: color,
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: color,
         elevation: screenWidth * 0.01,
         title: Text(
           "Tap&Talk",
@@ -66,84 +68,113 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: color,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: screenWidth * 0.7,
-                child: TextField(
-                  controller: userNameController,
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.account_circle),
-                    labelText: "User Name",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "lib/assets/app-logo.png",
+                  width: screenWidth * 0.3,
+                ),
+                SizedBox(height: screenHeight * 0.1),
+                SizedBox(
+                  width: screenWidth * 0.7,
+                  child: TextField(
+                    controller: userNameController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.account_box),
+                      labelText: "User Name",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.05,
-              ),
-              SizedBox(
-                width: screenWidth * 0.7,
-                child: TextField(
-                  controller: passwordController,
-                  obscureText: true,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.security),
-                    labelText: "Password",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(0),
+                SizedBox(
+                  height: screenHeight * 0.05,
+                ),
+                SizedBox(
+                  width: screenWidth * 0.7,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.lock),
+                      labelText: "Password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.1,
-              ),
-              ButtonBar(
-                children: [
-                  MaterialButton(
-                    color: Colors.blue[300],
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ForgotMyPassword(),
+                SizedBox(
+                  height: screenHeight * 0.1,
+                ),
+                SizedBox(
+                  width: screenWidth,
+                  child: ButtonBar(
+                    children: [
+                      MaterialButton(
+                        color: Theme.of(context).primaryColor,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgotMyPassword(
+                                screenHeight: screenHeight,
+                                screenWidth: screenWidth,
+                                color: color,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Forgot My Password",
+                          style: TextStyle(color: Colors.blue[900]),
                         ),
-                      );
-                    },
-                    child: Text(
-                      "Forgot My Password",
-                      style: TextStyle(color: Colors.blue[900]),
-                    ),
-                  ),
-                  MaterialButton(
-                    color: Colors.blue[300],
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignedIn(
-                              screenWidth, screenHeight, userName, password),
+                      ),
+                      MaterialButton(
+                        color: Theme.of(context).primaryColor,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignedIn(
+                                screenWidth: screenWidth,
+                                screenHeight: screenHeight,
+                                userName: userName,
+                                password: password,
+                                color: color,
+                              ),
+                            ),
+                          );
+                          userName = userNameController.text;
+                          password = passwordController.text;
+                        },
+                        child: Text(
+                          "Sign In",
+                          style: TextStyle(color: Colors.blue[900]),
                         ),
-                      );
-                      userName = userNameController.text;
-                      password = passwordController.text;
-                    },
-                    child: Text(
-                      "Sign In",
-                      style: TextStyle(color: Colors.blue[900]),
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ],
+                ),
+                CheckboxListTile(
+                  title: Text("Remember Password"),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: rememberPassword,
+                  onChanged: (bool passwordRememberOn) {
+                    setState(() {
+                      rememberPassword = passwordRememberOn;
+                    });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
