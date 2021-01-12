@@ -6,6 +6,7 @@ class SignedIn extends StatefulWidget {
   num screenHeight;
   String userName;
   String password;
+  String birthDay;
   var color;
 
   SignedIn(
@@ -13,7 +14,8 @@ class SignedIn extends StatefulWidget {
       this.screenHeight,
       this.userName,
       this.password,
-      this.color});
+      this.color,
+      this.birthDay});
 
   @override
   _SignedInState createState() => _SignedInState();
@@ -54,6 +56,7 @@ class _SignedInState extends State<SignedIn> {
             Text("Signed In"),
             Text("User Name  : ${widget.userName}"),
             Text("Password : ${widget.password}"),
+            Text("Birth Day : ${widget.birthDay}"),
           ],
         ),
       ),

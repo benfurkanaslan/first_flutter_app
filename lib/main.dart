@@ -40,8 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var userNameController = TextEditingController();
   var passwordController = TextEditingController();
+  var dateTimePickerController = TextEditingController();
   String userName;
   String password;
+  String birthDay;
   bool rememberPassword = false;
   var color = Colors.blueGrey;
 
@@ -78,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   "lib/assets/app-logo.png",
                   width: screenWidth * 0.3,
                 ),
-                SizedBox(height: screenHeight * 0.1),
+                SizedBox(height: screenHeight * 0.05),
                 SizedBox(
                   width: screenWidth * 0.7,
                   child: TextField(
@@ -93,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.05,
+                  height: screenHeight * 0.03,
                 ),
                 SizedBox(
                   width: screenWidth * 0.7,
@@ -112,8 +114,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.1,
+                  height: screenHeight * 0.03,
                 ),
+                SizedBox(
+                  width: screenWidth * 0.7,
+                  child: TextField(
+                    controller: dateTimePickerController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.date_range),
+                      labelText: "Birth Day",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                    ),
+                    onTap: () {
+                      showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1950),
+                              lastDate: DateTime.now())
+                          .then((value) {
+                        dateTimePickerController.text =
+                            "${value.month}/${value.day}/${value.year}";
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.05),
                 SizedBox(
                   width: screenWidth,
                   child: ButtonBar(
@@ -148,12 +175,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 screenHeight: screenHeight,
                                 userName: userName,
                                 password: password,
+                                birthDay: birthDay,
                                 color: color,
                               ),
                             ),
                           );
                           userName = userNameController.text;
                           password = passwordController.text;
+                          birthDay = dateTimePickerController.text;
                         },
                         child: Text(
                           "Sign In",
@@ -163,15 +192,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-                CheckboxListTile(
-                  title: Text("Remember Password"),
-                  controlAffinity: ListTileControlAffinity.leading,
-                  value: rememberPassword,
-                  onChanged: (bool passwordRememberOn) {
-                    setState(() {
-                      rememberPassword = passwordRememberOn;
-                    });
-                  },
+                SizedBox(
+                  width: screenWidth * 0.615,
+                  child: CheckboxListTile(
+                    title: Text("Remember Password"),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: rememberPassword,
+                    onChanged: (bool passwordRememberOn) {
+                      setState(() {
+                        rememberPassword = passwordRememberOn;
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
