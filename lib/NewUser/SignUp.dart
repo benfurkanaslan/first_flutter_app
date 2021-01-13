@@ -1,84 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/ForgotPassword/ForgotMyPassword.dart';
-import 'package:flutter_app/NewUser/SignUp.dart';
-import 'package:flutter_app/SignIn/SignedIn.dart';
 
-void main() {
-  runApp(MyApp());
+// ignore: must_be_immutable
+class SignUp extends StatefulWidget {
+  var color;
+  num screenHeight;
+  num screenWidth;
+
+  SignUp(
+      {@required this.color,
+      @required this.screenHeight,
+      @required this.screenWidth});
+
+  @override
+  _SignUpState createState() => _SignUpState();
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tap&Talk',
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-  }
-
+class _SignUpState extends State<SignUp> {
+  var formKey = GlobalKey<FormState>();
   var userNameController = TextEditingController();
   var passwordController = TextEditingController();
   var dateTimePickerController = TextEditingController();
-  String userName;
-  String password;
-  String birthDate;
-  bool rememberPassword = false;
-  var color = Colors.blueGrey;
   var scaffoldKey = GlobalKey<ScaffoldState>();
-  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    var screenInfo = MediaQuery.of(context);
-    final screenWidth = screenInfo.size.width;
-    final screenHeight = screenInfo.size.height;
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: color,
+      backgroundColor: widget.color,
       appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.help,
-              color: Colors.black87,
-            ),
-            onPressed: () {
-              scaffoldKey.currentState.showSnackBar(SnackBar(
-                content: Text('Helped'),
-              ));
-            },
-          ),
-        ],
-        backgroundColor: color,
+        backgroundColor: widget.color,
         elevation: 0.0,
         title: Text(
           'Tap&Talk',
           style: TextStyle(
-              fontSize: screenWidth * 0.06,
-              letterSpacing: screenWidth * 0.003,
-              wordSpacing: screenWidth * 0.01,
+              fontSize: widget.screenWidth * 0.06,
+              letterSpacing: widget.screenWidth * 0.003,
+              wordSpacing: widget.screenWidth * 0.01,
               color: Colors.black),
         ),
         centerTitle: true,
@@ -86,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(screenWidth * 0.1),
+            borderRadius: BorderRadius.circular(widget.screenWidth * 0.1),
             color: Colors.black12,
           ),
           child: SingleChildScrollView(
@@ -95,9 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Image.asset(
                   'lib/assets/app-logo.png',
-                  width: screenWidth * 0.3,
+                  width: widget.screenWidth * 0.3,
                 ),
-                SizedBox(height: screenHeight * 0.05),
+                SizedBox(height: widget.screenHeight * 0.05),
                 Form(
                   key: formKey,
                   child: Column(
@@ -105,11 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(
-                        width: screenWidth * 0.7,
+                        width: widget.screenWidth * 0.7,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(screenWidth * 0.05),
+                            borderRadius: BorderRadius.circular(
+                                widget.screenWidth * 0.05),
                             color: Colors.black12,
                           ),
                           child: TextFormField(
@@ -118,8 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               prefixIcon: Icon(Icons.account_box),
                               labelText: 'User Name',
                               border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(screenWidth * 0.05),
+                                borderRadius: BorderRadius.circular(
+                                    widget.screenWidth * 0.05),
                               ),
                             ),
                             validator: (value) {
@@ -131,14 +89,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.03,
+                        height: widget.screenHeight * 0.03,
                       ),
                       SizedBox(
-                        width: screenWidth * 0.7,
+                        width: widget.screenWidth * 0.7,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(screenWidth * 0.05),
+                            borderRadius: BorderRadius.circular(
+                                widget.screenWidth * 0.05),
                             color: Colors.black12,
                           ),
                           child: TextFormField(
@@ -150,8 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               prefixIcon: Icon(Icons.lock),
                               labelText: 'Password',
                               border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(screenWidth * 0.05),
+                                borderRadius: BorderRadius.circular(
+                                    widget.screenWidth * 0.05),
                               ),
                             ),
                             validator: (value) {
@@ -163,17 +121,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.03,
+                        height: widget.screenHeight * 0.03,
                       ),
                       SizedBox(
-                        width: screenWidth * 0.7,
+                        width: widget.screenWidth * 0.7,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.zero,
                               bottomRight: Radius.zero,
-                              topLeft: Radius.circular(screenWidth * 0.05),
-                              topRight: Radius.circular(screenWidth * 0.05),
+                              topLeft:
+                                  Radius.circular(widget.screenWidth * 0.05),
+                              topRight:
+                                  Radius.circular(widget.screenWidth * 0.05),
                             ),
                             color: Colors.black12,
                           ),
@@ -188,8 +148,10 @@ Please enter your birth date correctly.''',
                               labelText: 'Birth Date',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(screenWidth * 0.05),
-                                  topLeft: Radius.circular(screenWidth * 0.05),
+                                  topRight: Radius.circular(
+                                      widget.screenWidth * 0.05),
+                                  topLeft: Radius.circular(
+                                      widget.screenWidth * 0.05),
                                 ),
                               ),
                             ),
@@ -215,104 +177,35 @@ Please enter your birth date correctly.''',
                     ],
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.05),
+                SizedBox(height: widget.screenHeight * 0.05),
                 SizedBox(
-                  width: screenWidth,
+                  width: widget.screenWidth,
                   child: ButtonBar(
                     children: [
                       MaterialButton(
                         color: Theme.of(context).primaryColor,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgotMyPassword(
-                                screenHeight: screenHeight,
-                                screenWidth: screenWidth,
-                                color: color,
-                              ),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'Forgot My Password',
-                          style: TextStyle(color: Colors.blue[900]),
-                        ),
-                      ),
-                      MaterialButton(
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () {
                           bool controlled = formKey.currentState.validate();
-
                           controlled == true
-                              ? Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SignedIn(
-                                      screenWidth: screenWidth,
-                                      screenHeight: screenHeight,
-                                      userName: userName,
-                                      password: password,
-                                      birthDate: birthDate,
-                                      color: color,
-                                    ),
-                                  ),
-                                )
+                              ? scaffoldKey.currentState.showSnackBar(SnackBar(
+                                  content: Text('Signed Up'),
+                                ))
                               : scaffoldKey.currentState.showSnackBar(SnackBar(
                                   content: Text('Enter Empty Areas'),
                                 ));
-                          userName = userNameController.text;
-                          password = passwordController.text;
-                          birthDate = dateTimePickerController.text;
                         },
                         child: Text(
-                          'Sign In',
+                          'Sign Up',
                           style: TextStyle(color: Colors.blue[900]),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: screenWidth * 0.615,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                    ),
-                    child: CheckboxListTile(
-                      title: Text('Remember Password'),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: rememberPassword,
-                      onChanged: (bool passwordRememberOn) {
-                        setState(() {
-                          rememberPassword = passwordRememberOn;
-                        });
-                      },
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.account_circle),
-        label: Text('New User'),
-        elevation: 0.0,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SignUp(
-                screenWidth: screenWidth,
-                screenHeight: screenHeight,
-                color: color,
-              ),
-            ),
-          );
-        },
       ),
     );
   }

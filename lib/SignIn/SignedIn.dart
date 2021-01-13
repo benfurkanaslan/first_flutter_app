@@ -6,7 +6,7 @@ class SignedIn extends StatefulWidget {
   num screenHeight;
   String userName;
   String password;
-  String birthDay;
+  String birthDate;
   var color;
 
   SignedIn(
@@ -15,7 +15,7 @@ class SignedIn extends StatefulWidget {
       @required this.userName,
       @required this.password,
       @required this.color,
-      @required this.birthDay});
+      @required this.birthDate});
 
   @override
   _SignedInState createState() => _SignedInState();
@@ -60,9 +60,9 @@ class _SignedInState extends State<SignedIn> {
             widget.password.isEmpty
                 ? Text("")
                 : Text("Password : ${widget.password}"),
-            widget.birthDay.isEmpty
+            widget.birthDate.isEmpty
                 ? Text("")
-                : Text("Birth Day : ${widget.birthDay}"),
+                : Text("Birth Day : ${widget.birthDate}"),
           ],
         ),
       ),
