@@ -48,51 +48,72 @@ class _ForgotMyPasswordState extends State<ForgotMyPassword> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: widget.screenWidth * 0.7,
-              child: TextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: eMailController,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email),
-                  labelText: "E-mail",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(0),
+        child: Padding(
+          padding: EdgeInsets.all(widget.screenWidth * 0.02),
+          child: Container(
+            height: widget.screenHeight,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.screenWidth * 0.1),
+              color: Colors.black12,
+            ),
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: widget.screenWidth * 0.7,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(widget.screenWidth * 0.05),
+                        color: Colors.black12,
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: eMailController,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email),
+                          labelText: "E-mail",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                                widget.screenWidth * 0.05),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: widget.screenHeight * 0.1,
+                  ),
+                  MaterialButton(
+                    enableFeedback: true,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      eMail = eMailController.text;
+                      eMail.isNotEmpty
+                          ? scaffoldKey.currentState.showSnackBar(SnackBar(
+                              content: Text("E-mail has sent to $eMail"),
+                            ))
+                          : scaffoldKey.currentState.showSnackBar(SnackBar(
+                              content: Text("Enter an E-mail"),
+                            ));
+                    },
+                    child: Text(
+                      "Send Me an E-mail",
+                      style: TextStyle(color: Colors.blue[900]),
+                    ),
+                  ),
+                  SizedBox(
+                    height: widget.screenHeight * 0.05,
+                  ),
+                  eMail?.isEmpty ?? true
+                      ? Text("")
+                      : Text("E-mail has sent to $eMail"),
+                ],
               ),
             ),
-            SizedBox(
-              height: widget.screenHeight * 0.1,
-            ),
-            MaterialButton(
-              enableFeedback: true,
-              color: Theme.of(context).primaryColor,
-              onPressed: () {
-                eMail = eMailController.text;
-                eMail.isNotEmpty
-                    ? scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text("E-mail has sent to $eMail"),
-                      ))
-                    : scaffoldKey.currentState.showSnackBar(SnackBar(
-                        content: Text("Enter an E-mail"),
-                      ));
-              },
-              child: Text(
-                "Send Me an E-mail",
-                style: TextStyle(color: Colors.blue[900]),
-              ),
-            ),
-            SizedBox(
-              height: widget.screenHeight * 0.05,
-            ),
-            eMail?.isEmpty ?? true
-                ? Text("")
-                : Text("E-mail has sent to $eMail"),
-          ],
+          ),
         ),
       ),
     );

@@ -84,222 +84,243 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(screenWidth * 0.1),
-            color: Colors.black12,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'lib/assets/app-logo.png',
-                  width: screenWidth * 0.3,
-                ),
-                SizedBox(height: screenHeight * 0.05),
-                Form(
-                  key: formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.7,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(screenWidth * 0.05),
-                            color: Colors.black12,
-                          ),
-                          child: TextFormField(
-                            controller: userNameController,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.account_box),
-                              labelText: 'User Name',
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(screenWidth * 0.05),
-                              ),
+        child: Padding(
+          padding: EdgeInsets.all(screenWidth * 0.02),
+          child: Container(
+            alignment: Alignment.center,
+            height: screenHeight,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(screenWidth * 0.1),
+              color: Colors.black12,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'lib/assets/app-logo.png',
+                    width: screenWidth * 0.3,
+                  ),
+                  SizedBox(height: screenHeight * 0.05),
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.7,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(screenWidth * 0.05),
+                              color: Colors.black12,
                             ),
-                            validator: (value) {
-                              return value.isEmpty
-                                  ? '*Please Enter Your User Name'
-                                  : null;
-                            },
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.03,
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.7,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(screenWidth * 0.05),
-                            color: Colors.black12,
-                          ),
-                          child: TextFormField(
-                            controller: passwordController,
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.lock),
-                              labelText: 'Password',
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(screenWidth * 0.05),
-                              ),
-                            ),
-                            validator: (value) {
-                              return value.isEmpty
-                                  ? '*Please Enter Your Password'
-                                  : null;
-                            },
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: screenHeight * 0.03,
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.7,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.zero,
-                              bottomRight: Radius.zero,
-                              topLeft: Radius.circular(screenWidth * 0.05),
-                              topRight: Radius.circular(screenWidth * 0.05),
-                            ),
-                            color: Colors.black12,
-                          ),
-                          child: TextFormField(
-                            keyboardType: TextInputType.datetime,
-                            controller: dateTimePickerController,
-                            decoration: InputDecoration(
-                              helperText: '''Users are matched by age,
-Please enter your birth date correctly.''',
-                              hintText: 'mm/dd/yyyy',
-                              prefixIcon: Icon(Icons.date_range),
-                              labelText: 'Birth Date',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(screenWidth * 0.05),
-                                  topLeft: Radius.circular(screenWidth * 0.05),
+                            child: TextFormField(
+                              controller: userNameController,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.account_box),
+                                labelText: 'User Name',
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(screenWidth * 0.05),
                                 ),
                               ),
+                              validator: (value) {
+                                return value.isEmpty
+                                    ? '*Please Enter Your User Name'
+                                    : null;
+                              },
                             ),
-                            onTap: () {
-                              showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(1950),
-                                      lastDate: DateTime.now())
-                                  .then((value) {
-                                dateTimePickerController.text =
-                                    '${value.month}/${value.day}/${value.year}';
-                              });
-                            },
-                            validator: (value) {
-                              return value.isEmpty
-                                  ? '*Please Enter Your Birth Date'
-                                  : null;
-                            },
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: screenHeight * 0.05),
-                SizedBox(
-                  width: screenWidth,
-                  child: ButtonBar(
-                    children: [
-                      MaterialButton(
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgotMyPassword(
-                                screenHeight: screenHeight,
-                                screenWidth: screenWidth,
-                                color: color,
-                              ),
+                        SizedBox(
+                          height: screenHeight * 0.03,
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.7,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(screenWidth * 0.05),
+                              color: Colors.black12,
                             ),
-                          );
-                        },
-                        child: Text(
-                          'Forgot My Password',
-                          style: TextStyle(color: Colors.blue[900]),
+                            child: TextFormField(
+                              controller: passwordController,
+                              obscureText: true,
+                              enableSuggestions: false,
+                              autocorrect: false,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.lock),
+                                labelText: 'Password',
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(screenWidth * 0.05),
+                                ),
+                              ),
+                              validator: (value) {
+                                return value.isEmpty
+                                    ? '*Please Enter Your Password'
+                                    : null;
+                              },
+                            ),
+                          ),
                         ),
-                      ),
-                      MaterialButton(
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () {
-                          bool controlled = formKey.currentState.validate();
-
-                          controlled == true
-                              ? Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SignedIn(
-                                      screenWidth: screenWidth,
-                                      screenHeight: screenHeight,
-                                      userName: userName,
-                                      password: password,
-                                      birthDate: birthDate,
-                                      color: color,
-                                    ),
+                        SizedBox(
+                          height: screenHeight * 0.03,
+                        ),
+                        SizedBox(
+                          width: screenWidth * 0.7,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.zero,
+                                bottomRight: Radius.zero,
+                                topLeft: Radius.circular(screenWidth * 0.05),
+                                topRight: Radius.circular(screenWidth * 0.05),
+                              ),
+                              color: Colors.black12,
+                            ),
+                            child: TextFormField(
+                              keyboardType: TextInputType.datetime,
+                              controller: dateTimePickerController,
+                              decoration: InputDecoration(
+                                helperText: '''Users are matched by age,
+Please enter your birth date correctly.''',
+                                hintText: 'mm/dd/yyyy',
+                                prefixIcon: Icon(Icons.date_range),
+                                labelText: 'Birth Date',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topRight:
+                                        Radius.circular(screenWidth * 0.05),
+                                    topLeft:
+                                        Radius.circular(screenWidth * 0.05),
                                   ),
-                                )
-                              : scaffoldKey.currentState.showSnackBar(SnackBar(
-                                  content: Text('Enter Empty Areas'),
-                                ));
-                          userName = userNameController.text;
-                          password = passwordController.text;
-                          birthDate = dateTimePickerController.text;
-                        },
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(color: Colors.blue[900]),
+                                ),
+                              ),
+                              onTap: () {
+                                showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1950),
+                                        lastDate: DateTime.now())
+                                    .then((value) {
+                                  dateTimePickerController.text =
+                                      '${value.month}/${value.day}/${value.year}';
+                                });
+                              },
+                              validator: (value) {
+                                return value.isEmpty
+                                    ? '*Please Enter Your Birth Date'
+                                    : null;
+                              },
+                            ),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.05),
+                  SizedBox(
+                    width: screenWidth,
+                    child: ButtonBar(
+                      children: [
+                        MaterialButton(
+                          color: Theme.of(context).primaryColor,
+                          elevation: 0.0,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotMyPassword(
+                                  screenHeight: screenHeight,
+                                  screenWidth: screenWidth,
+                                  color: color,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Forgot My Password',
+                            style: TextStyle(
+                                color: Colors.blue[900],
+                                fontSize: screenWidth * 0.038),
+                          ),
+                        ),
+                        MaterialButton(
+                          color: Theme.of(context).primaryColor,
+                          elevation: 0.0,
+                          onPressed: () {
+                            bool controlled = formKey.currentState.validate();
+
+                            controlled == true
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignedIn(
+                                        screenWidth: screenWidth,
+                                        screenHeight: screenHeight,
+                                        userName: userName,
+                                        password: password,
+                                        birthDate: birthDate,
+                                        color: color,
+                                      ),
+                                    ),
+                                  )
+                                : scaffoldKey.currentState
+                                    .showSnackBar(SnackBar(
+                                    content: Text('Enter Empty Areas'),
+                                  ));
+                            userName = userNameController.text;
+                            password = passwordController.text;
+                            birthDate = dateTimePickerController.text;
+                          },
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(
+                                color: Colors.blue[900],
+                                fontSize: screenWidth * 0.038),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: screenWidth * 0.717,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(screenWidth * 0.05),
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: screenWidth * 0.615,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                    ),
-                    child: CheckboxListTile(
-                      title: Text('Remember Password'),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      value: rememberPassword,
-                      onChanged: (bool passwordRememberOn) {
-                        setState(() {
-                          rememberPassword = passwordRememberOn;
-                        });
-                      },
+                      child: CheckboxListTile(
+                        secondary: Icon(Icons.security),
+                        title: Text(
+                          'Remember Password',
+                          style: TextStyle(fontSize: screenWidth * 0.04),
+                        ),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        value: rememberPassword,
+                        onChanged: (bool passwordRememberOn) {
+                          setState(() {
+                            rememberPassword = passwordRememberOn;
+                          });
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.account_circle),
-        label: Text('New User'),
+        label: Text(
+          'Sign Up',
+          style: TextStyle(fontSize: screenWidth * 0.038),
+        ),
         elevation: 0.0,
         onPressed: () {
           Navigator.push(
