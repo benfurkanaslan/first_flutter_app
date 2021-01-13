@@ -10,12 +10,12 @@ class SignedIn extends StatefulWidget {
   var color;
 
   SignedIn(
-      {this.screenWidth,
-      this.screenHeight,
-      this.userName,
-      this.password,
-      this.color,
-      this.birthDay});
+      {@required this.screenWidth,
+      @required this.screenHeight,
+      @required this.userName,
+      @required this.password,
+      @required this.color,
+      @required this.birthDay});
 
   @override
   _SignedInState createState() => _SignedInState();
@@ -36,7 +36,7 @@ class _SignedInState extends State<SignedIn> {
             color: Colors.black,
           ),
         ),
-        elevation: widget.screenWidth * 0.01,
+        elevation: 0.0,
         backgroundColor: widget.color,
         title: Text(
           "Tap&Talk",
@@ -54,9 +54,15 @@ class _SignedInState extends State<SignedIn> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Signed In"),
-            Text("User Name  : ${widget.userName}"),
-            Text("Password : ${widget.password}"),
-            Text("Birth Day : ${widget.birthDay}"),
+            widget.userName.isEmpty
+                ? Text("")
+                : Text("User Name  : ${widget.userName}"),
+            widget.password.isEmpty
+                ? Text("")
+                : Text("Password : ${widget.password}"),
+            widget.birthDay.isEmpty
+                ? Text("")
+                : Text("Birth Day : ${widget.birthDay}"),
           ],
         ),
       ),

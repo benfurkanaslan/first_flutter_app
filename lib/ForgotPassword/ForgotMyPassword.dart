@@ -6,7 +6,10 @@ class ForgotMyPassword extends StatefulWidget {
   num screenWidth;
   var color;
 
-  ForgotMyPassword({this.screenHeight, this.screenWidth, this.color});
+  ForgotMyPassword(
+      {@required this.screenHeight,
+      @required this.screenWidth,
+      @required this.color});
 
   @override
   _ForgotMyPasswordState createState() => _ForgotMyPasswordState();
@@ -15,10 +18,12 @@ class ForgotMyPassword extends StatefulWidget {
 class _ForgotMyPasswordState extends State<ForgotMyPassword> {
   var eMailController = TextEditingController();
   String eMail;
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: widget.color,
       appBar: AppBar(
         leading: IconButton(
@@ -31,7 +36,7 @@ class _ForgotMyPasswordState extends State<ForgotMyPassword> {
           ),
         ),
         backgroundColor: widget.color,
-        elevation: widget.screenWidth * 0.01,
+        elevation: 0.0,
         title: Text(
           "Tap&Talk",
           style: TextStyle(
@@ -49,9 +54,10 @@ class _ForgotMyPasswordState extends State<ForgotMyPassword> {
             SizedBox(
               width: widget.screenWidth * 0.7,
               child: TextField(
+                keyboardType: TextInputType.emailAddress,
                 controller: eMailController,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.email),
+                  prefixIcon: Icon(Icons.email),
                   labelText: "E-mail",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(0),
@@ -67,7 +73,13 @@ class _ForgotMyPasswordState extends State<ForgotMyPassword> {
               color: Theme.of(context).primaryColor,
               onPressed: () {
                 eMail = eMailController.text;
-                setState(() {});
+                eMail.isNotEmpty
+                    ? scaffoldKey.currentState.showSnackBar(SnackBar(
+                        content: Text("E-mail has sent to $eMail"),
+                      ))
+                    : scaffoldKey.currentState.showSnackBar(SnackBar(
+                        content: Text("Enter an E-mail"),
+                      ));
               },
               child: Text(
                 "Send Me an E-mail",
@@ -77,11 +89,9 @@ class _ForgotMyPasswordState extends State<ForgotMyPassword> {
             SizedBox(
               height: widget.screenHeight * 0.05,
             ),
-            Text(
-              (() {
-                return eMail == null ? "" : "E-mail has sent to $eMail";
-              }()),
-            ),
+            eMail?.isEmpty ?? true
+                ? Text("")
+                : Text("E-mail has sent to $eMail"),
           ],
         ),
       ),

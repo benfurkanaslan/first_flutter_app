@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -46,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String birthDay;
   bool rememberPassword = false;
   var color = Colors.blueGrey;
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +53,24 @@ class _MyHomePageState extends State<MyHomePage> {
     final screenWidth = screenInfo.size.width;
     final screenHeight = screenInfo.size.height;
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: color,
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.help,
+              color: Colors.black87,
+            ),
+            onPressed: () {
+              scaffoldKey.currentState.showSnackBar(SnackBar(
+                content: Text("Helped"),
+              ));
+            },
+          ),
+        ],
         backgroundColor: color,
-        elevation: screenWidth * 0.01,
+        elevation: 0.0,
         title: Text(
           "Tap&Talk",
           style: TextStyle(
@@ -86,10 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: TextField(
                     controller: userNameController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.account_box),
+                      prefixIcon: Icon(Icons.account_box),
                       labelText: "User Name",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.zero,
                       ),
                     ),
                   ),
@@ -105,10 +119,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     enableSuggestions: false,
                     autocorrect: false,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.lock),
                       labelText: "Password",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.zero,
                       ),
                     ),
                   ),
@@ -119,12 +133,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: screenWidth * 0.7,
                   child: TextField(
+                    keyboardType: TextInputType.datetime,
                     controller: dateTimePickerController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.date_range),
-                      labelText: "Birth Day",
+                      hintText: "mm/dd/yyyy",
+                      prefixIcon: Icon(Icons.date_range),
+                      labelText: "Birth Date",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.zero,
                       ),
                     ),
                     onTap: () {
