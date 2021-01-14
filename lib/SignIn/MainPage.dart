@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class SignedIn extends StatefulWidget {
+class MainPage extends StatefulWidget {
   num screenWidth;
   num screenHeight;
   String userName;
@@ -9,19 +9,13 @@ class SignedIn extends StatefulWidget {
   String birthDate;
   var color;
 
-  SignedIn(
-      {@required this.screenWidth,
-      @required this.screenHeight,
-      @required this.userName,
-      @required this.password,
-      @required this.color,
-      @required this.birthDate});
+  MainPage({@required this.screenWidth, @required this.screenHeight, @required this.userName, @required this.password, @required this.color, @required this.birthDate});
 
   @override
-  _SignedInState createState() => _SignedInState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _SignedInState extends State<SignedIn> {
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,16 +47,10 @@ class _SignedInState extends State<SignedIn> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Signed In"),
-            widget.userName.isEmpty
-                ? Text("")
-                : Text("User Name  : ${widget.userName}"),
-            widget.password.isEmpty
-                ? Text("")
-                : Text("Password : ${widget.password}"),
-            widget.birthDate.isEmpty
-                ? Text("")
-                : Text("Birth Day : ${widget.birthDate}"),
+            Text("Main Page"),
+            widget.userName.isEmpty ? null : Text("User Name  : ${widget.userName}"),
+            widget.password.isEmpty ? null : Text("Password : ${widget.password}"),
+            widget.birthDate.isEmpty ? null : Text("Birth Day : ${widget.birthDate}"),
           ],
         ),
       ),
