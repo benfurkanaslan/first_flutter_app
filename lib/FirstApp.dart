@@ -32,10 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
   }
 
   var userNameController = TextEditingController();
@@ -60,14 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.help,
-              color: Colors.black87,
-            ),
+            icon: Icon(Icons.help, color: Colors.black87),
             onPressed: () {
-              scaffoldKey.currentState.showSnackBar(SnackBar(
-                content: Text('Helped'),
-              ));
+              scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Helped')));
             },
           ),
         ],
@@ -77,14 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Tap&Talk',
-              style: TextStyle(fontSize: screenWidth * 0.06, letterSpacing: screenWidth * 0.003, wordSpacing: screenWidth * 0.01, color: Colors.black),
-            ),
-            Text(
-              'with someone you never knew',
-              style: TextStyle(fontSize: screenWidth * 0.04, letterSpacing: screenWidth * 0.0, wordSpacing: screenWidth * 0.01, color: Colors.black87),
-            ),
+            Text('Tap&Talk', style: TextStyle(fontSize: screenWidth * 0.06, letterSpacing: screenWidth * 0.003, wordSpacing: screenWidth * 0.01, color: Colors.black)),
+            Text('with someone you never knew',
+                style: TextStyle(fontSize: screenWidth * 0.04, letterSpacing: screenWidth * 0.0, wordSpacing: screenWidth * 0.01, color: Colors.black87))
           ],
         ),
       ),
@@ -94,16 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         label: Text('Sign Up', style: TextStyle(fontSize: screenWidth * 0.038)),
         elevation: 0.0,
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SignUp(
-                screenWidth: screenWidth,
-                screenHeight: screenHeight,
-                color: color,
-              ),
-            ),
-          );
+          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp(screenWidth: screenWidth, screenHeight: screenHeight, color: color)));
         },
       ),
     );
@@ -176,27 +159,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: screenWidth * 0.7,
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.zero, bottomRight: Radius.zero, topLeft: Radius.circular(screenWidth * 0.05), topRight: Radius.circular(screenWidth * 0.05)),
-                          color: Colors.black12,
-                        ),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.zero, bottomRight: Radius.zero, topLeft: Radius.circular(screenWidth * 0.05), topRight: Radius.circular(screenWidth * 0.05)),
+                            color: Colors.black12),
                         child: TextFormField(
                           keyboardType: TextInputType.datetime,
                           controller: dateTimePickerController,
                           decoration: InputDecoration(
-                            helperText: '''Users are matched by age,
+                              helperText: '''Users are matched by age,
 Please enter your birth date correctly.''',
-                            hintText: 'mm/dd/yyyy',
-                            prefixIcon: Icon(Icons.date_range),
-                            labelText: 'Birth Date',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.only(topRight: Radius.circular(screenWidth * 0.05), topLeft: Radius.circular(screenWidth * 0.05)),
-                            ),
-                          ),
+                              hintText: 'mm/dd/yyyy',
+                              prefixIcon: Icon(Icons.date_range),
+                              labelText: 'Birth Date',
+                              border:
+                                  OutlineInputBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(screenWidth * 0.05), topLeft: Radius.circular(screenWidth * 0.05)))),
                           onTap: () {
-                            showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1950), lastDate: DateTime.now()).then((value) {
-                              dateTimePickerController.text = '${value.month}/${value.day}/${value.year}';
-                            });
+                            showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(1950), lastDate: DateTime.now()).then(
+                              (value) {
+                                dateTimePickerController.text = '${value.month}/${value.day}/${value.year}';
+                              },
+                            );
                           },
                           validator: (value) {
                             return value.isEmpty ? '*Please Enter Your Birth Date' : null;
@@ -213,18 +195,12 @@ Please enter your birth date correctly.''',
                 child: ButtonBar(
                   children: [
                     MaterialButton(
-                      color: Theme.of(context).primaryColor,
-                      elevation: 0.0,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotMyPassword(screenHeight: screenHeight, screenWidth: screenWidth, color: color),
-                          ),
-                        );
-                      },
-                      child: Text('Forgot My Password', style: TextStyle(color: Colors.blue[900], fontSize: screenWidth * 0.038)),
-                    ),
+                        color: Theme.of(context).primaryColor,
+                        elevation: 0.0,
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotMyPassword(screenHeight: screenHeight, screenWidth: screenWidth, color: color)));
+                        },
+                        child: Text('Forgot My Password', style: TextStyle(color: Colors.blue[900], fontSize: screenWidth * 0.038))),
                     MaterialButton(
                       color: Theme.of(context).primaryColor,
                       elevation: 0.0,
@@ -234,10 +210,8 @@ Please enter your birth date correctly.''',
                             ? Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      MainPage(screenWidth: screenWidth, screenHeight: screenHeight, userName: userName, password: password, birthDate: birthDate, color: color),
-                                ),
-                              )
+                                    builder: (context) =>
+                                        MainPage(screenWidth: screenWidth, screenHeight: screenHeight, userName: userName, password: password, birthDate: birthDate, color: color)))
                             : scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Enter Empty Areas')));
                         userName = userNameController.text;
                         password = passwordController.text;
@@ -251,22 +225,18 @@ Please enter your birth date correctly.''',
               SizedBox(
                 width: screenWidth * 0.717,
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                  ),
+                  decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(screenWidth * 0.05)),
                   child: CheckboxListTile(
                     secondary: Icon(Icons.security),
-                    title: Text(
-                      'Remember Password',
-                      style: TextStyle(fontSize: screenWidth * 0.04),
-                    ),
+                    title: Text('Remember Password', style: TextStyle(fontSize: screenWidth * 0.04)),
                     controlAffinity: ListTileControlAffinity.leading,
                     value: rememberPassword,
                     onChanged: (bool passwordRememberOn) {
-                      setState(() {
-                        rememberPassword = passwordRememberOn;
-                      });
+                      setState(
+                        () {
+                          rememberPassword = passwordRememberOn;
+                        },
+                      );
                     },
                   ),
                 ),

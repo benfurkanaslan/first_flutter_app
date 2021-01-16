@@ -19,7 +19,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.color,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -30,18 +29,6 @@ class _MainPageState extends State<MainPage> {
             color: Colors.black,
           ),
         ),
-        elevation: 0.0,
-        backgroundColor: widget.color,
-        title: Text(
-          "Tap&Talk",
-          style: TextStyle(
-            color: Colors.black,
-            letterSpacing: widget.screenWidth * 0.003,
-            wordSpacing: widget.screenWidth * 0.01,
-            fontSize: widget.screenWidth * 0.06,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: Center(
         child: Column(
